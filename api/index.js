@@ -19,10 +19,13 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const initLoader = require('./tools/initLoader');
 
-// Syncing all the models at once.
+// Syncing all the models at once.Setear Force: true para que se borre la DB sino en false
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(3001, async () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+    await initLoader();
+    console.log('Temperaments loaded');
   });
 });
