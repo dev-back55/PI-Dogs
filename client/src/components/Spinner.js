@@ -1,9 +1,9 @@
 import React from 'react'
-import spinning from '../img/spinning.gif';
+import './spinner.css';
 
 const Spinner = () => {
   return (
-    <img src={spinning} style={{width: '200px', margin: 'auto', display: 'block'}} alt='Cargando' />
+    <div className='spinner'></div>
   )
 }
 

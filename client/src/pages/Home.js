@@ -9,32 +9,19 @@ import SearchBar from '../components/SearchBar';
 import Filtrar from '../components/Filtrar';
 import FiltrarTemps from '../components/FiltrarTemps';
 import Ordenar from '../components/Ordenar';
-
-
-//import Paginado from '../components/Paginado'
-
-
-//import Spinner from '../components/Spinner';
+import Spinner from '../components/Spinner';
 
 export const Home = () => {
     const dispatch = useDispatch()
 
     const { dogsapi } = useSelector(state => state.ui);
-    
 
     const [currentPage, setCurrentPage] = useState(1);
-/*    
-    const [dogPorPage, setDogPorPage] = useState(8);
-    const indexUltimoDog = currentPage * dogPorPage
-    const indexPrimerDog = indexUltimoDog - dogPorPage
-    const currentDogs = dogsapi.slice(indexPrimerDog, indexUltimoDog)
-    
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
-*/
+
     useEffect(() => {
+        
          dispatch(getDogs());
+         
      },[dispatch])
      
     useEffect(() => {
@@ -104,8 +91,9 @@ export const Home = () => {
                 <Pagina currentPage={currentPage} setCurrentPage={setCurrentPage} maxpage={maxpage}></Pagina>
 
           </div>
-               { !dogToShow()?.length
-                 ? <h1>Cargando...</h1>
+               {               
+                 !dogToShow()?.length
+                 ? <Spinner />
                  : dogToShow()?.map(dog =>(
                     <CardDog key={dog.id} {...dog} />
                  ))
@@ -116,13 +104,4 @@ export const Home = () => {
   )
 }
 
-
-//? <Paginado dogPorPage={dogPorPage} dogsapi={dogsapi.length} paginado={paginado}/>
-/*
-{ !currentDogs?.length
-    ? <h1>Cargando...</h1>
-    : currentDogs?.map(dog =>(
-    <CardDog key={dog.id} {...dog} />
-))
-}
-*/
+/* { !dogToShow()?.length */

@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_DOGID, SEARCH_DOG, CREATE_DOG, GET_TEMPS, GET_DOGS_DETAIL, GET_DOGNAME, FILTERID, FILTEREDBYTEMPS, ORDERBYNAME, ORDERBYPESO, POSTCREADOG, ADD_DOG_FAVORITE, SHOWFAVORITES } from '../actions/actions'
+import { GET_DOGS, GET_DOGID, SEARCH_DOG, CREATE_DOG, GET_TEMPS, GET_DOGS_DETAIL, GET_DOGNAME, FILTERID, FILTEREDBYTEMPS, ORDERBYNAME, ORDERBYPESO, POSTCREADOG, ADD_DOG_FAVORITE, SHOWFAVORITES, CLEARDOG } from '../actions/actions'
 
 const initialState = {
     dogsapi:[],
@@ -65,6 +65,9 @@ export function uiReducer(state = initialState, { type, payload }) {
             return { ...state,
                 dogsFavorite: [...state.dogsFavorite, payload]}    
         
+        case CLEARDOG:
+            return {...state, dog: {}}
+
         default:
            return state;
 

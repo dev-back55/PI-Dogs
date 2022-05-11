@@ -1,35 +1,35 @@
 import React, { useEffect } from 'react';
 import './DogDetail.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDogDetail } from '../actions/actions';
-import { Link } from 'react-router-dom';
-
-
+import { clearDog, getDogDetail } from '../actions/actions';
+import { useHistory } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 export const DogDetail = ({match}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const matchId=match.params.id;
-  const { dogsDb } = useSelector(state => state.ui);
-  
+
   useEffect(() => {
     dispatch(getDogDetail(matchId))
-    },[dispatch, matchId]);
+  },[dispatch, matchId]);
+  
+  const {dog} = useSelector(state => state.ui);
+  const { id, name, img, height, weight, lifeSpan, temperament } = dog;
 
-   const { dog } = useSelector(state => state.ui);
-   const { id, name, img, height, weight, lifeSpan, temperament } = dog;
-
-   if(typeof matchId==='string'){
-    const dog = dogsDb.filter(e => e.id === matchId)
-    const { id, name, img, height, weight, lifeSpan, temperament } = dog;
+  const handlegoback = () => {
+    dispatch(clearDog())
+    history.goBack()
   }
-  
-  
+
+if(!dog) { return <Spinner />}
+
   return (
-    
-      <div className='container-details'>  
+        
+       <div className='container-details'>  
         <div className='container-btn'>
-        <Link to='/home'><button className='btn-home'>Home</button></Link>
+        <button className='btn-home' onClick={handlegoback}>Home</button>
         </div>
         <div className="container-card" key={id}>
             <div className="card-detail">
@@ -54,6 +54,7 @@ export const DogDetail = ({match}) => {
               </div>
             </div>
         </div>
-      </div> 
-  )
+      </div>    
+  )    
+      
 }

@@ -18,6 +18,7 @@ export const ORDERBYNAME = 'ORDERBYNAME';
 export const ORDERBYPESO = 'ORDERBYPESO';
 export const POSTCREADOG = 'POSTCREADOG';
 export const SHOWFAVORITES = 'SHOWFAVORITES';
+export const CLEARDOG = 'CLEARDOG';
 
 
 // Funciones creadoras de acciones
@@ -76,6 +77,13 @@ export function getDogName(name) {
       dispatch({ type: "GET_DOGNAME", payload: json});
     })
     .catch(err => alert('No encontrado...'));
+  }
+}
+
+export function clearDog(){
+  
+  return function (dispatch) {
+    dispatch({type: CLEARDOG}) 
   }
 }
 
