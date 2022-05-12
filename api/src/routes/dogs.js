@@ -32,7 +32,7 @@ router.get('/', async (req, res, next) => {
                     }
                 }
             }
-          return dogsHome.length?res.json(dogsHome):res.status(404).json([dogsapi])
+          return dogsHome.length?res.json(dogsHome):res.status(404).json()
         }
 
         dogsapi.forEach(dog => {
@@ -63,7 +63,7 @@ router.get('/:id', async(req,res,next)=>{
             const dog = dogs.filter(elem => {
                 return elem.id == id;
             });
-            return dog.length?res.json(apiDog(dog[0])):res.status(404).json({error: 'Dog No exite'});
+            return dog.length?res.json(apiDog(dog[0])):res.status(404).json({error: 'Raza No exite'});
         }else{
                 const dbDogy = await Dog.findByPk(id,{
                     include: Temperament

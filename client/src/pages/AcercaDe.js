@@ -1,12 +1,23 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { clearDog } from '../actions/actions';
 import './Acercade.css'
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const AcercaDe = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handlegoback = () => {
+    dispatch(clearDog())
+    history.goBack()
+  }
+
   return (
     <div className='container-total'>
         <div className='btn-home'>
-        <Link to='/home'><button className='btn-home'>Home</button></Link>
+        <button className='btn-home'
+         onClick={handlegoback}>Home</button>
         </div>
         <div className='container-acercade'>
     

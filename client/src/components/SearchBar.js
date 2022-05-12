@@ -17,14 +17,21 @@ function handleInputChange(e){
 
 function handleSubmit(e){
   e.preventDefault()
+
+  if(name){
   dispatch(getDogName(name)) 
-  
+  } else {
+    alert('Debe ingresar un nombre de raza!');
+  }
+  setName('')
 }
 
   return (
     
     <div>
       <input
+        name="name"
+        value={name}
         type= 'text'
         placeholder='Buscar...'
         onChange={(e)=>handleInputChange(e)}

@@ -6,12 +6,12 @@ import './Ordenar.css';
 const Ordenar = () => {
 
     const dispatch = useDispatch();
-    const { allDogs } = useSelector(state => state.ui);
+    const { dogsapi } = useSelector(state => state.ui);
     
 
     function handleOrdenarByName(e){
       
-        dispatch(orderByName(allDogs, e.target.value))
+        dispatch(orderByName(dogsapi, e.target.value))
     }
 
     

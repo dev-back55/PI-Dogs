@@ -74,9 +74,10 @@ export function getDogName(name) {
     return await fetch(`${apiDogName}${name}`)
     .then(response => response.json())
     .then(json => {
+      console.log('RESPUESTA DE JSONN!!!!!!', json);
       dispatch({ type: "GET_DOGNAME", payload: json});
     })
-    .catch(err => alert('No encontrado...'));
+    .catch(err => (alert('No encontrado...')))
   }
 }
 
@@ -125,7 +126,7 @@ export function filterId(dogs, value){
 
 export function filterByTemps(dogs, value){
   const temperamentFilter = [...dogs];
-	const filtrados = temperamentFilter?.filter(t => {
+	let filtrados = temperamentFilter?.filter(t => {
 		if (t.temperament) {
 			const dogTemperament = t.temperament.split(', ');
       return dogTemperament.includes(value);
@@ -133,7 +134,11 @@ export function filterByTemps(dogs, value){
 			return false;
 		}
 	});
-  
+  console.log(filtrados);
+  if(!filtrados.length){
+    filtrados = [...dogs]
+    alert('No se puede Filtrar, estos perritos no tienen ese temperamento')
+  }
 	return function (dispatch) {
 		dispatch({type: FILTEREDBYTEMPS, payload: filtrados});
 	};

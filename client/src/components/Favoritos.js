@@ -1,27 +1,30 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CardDog } from '../components/cardDog';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { clearDog } from '../actions/actions';
 import './Favoritos.css';
 // actions
 //import { getFavorites } from '../actions/actions';
 
 
 export const Favoritos = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+    
     const { dogsFavorite } = useSelector(state => state.ui);
 
+    const handlegoback = () => {
+      dispatch(clearDog())
+      history.goBack()
+    }
     
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getFavorites(favoritos))
-    // },[dispatch])
 
     return (
          <div className='container-fav'>
            
            <div className='container-btn'>
-              <Link to='/home'><button className='btn-home'>Home</button></Link>
+              <button className='btn-home' onClick={handlegoback}>Home</button>
            </div>
 
            <div className='container-titulo' >

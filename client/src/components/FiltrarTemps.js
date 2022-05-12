@@ -6,35 +6,17 @@ import './FiltrarTemps.css';
 const FiltrarTemps = () => {
 
     const dispatch = useDispatch();
-    const { allDogs, temps } = useSelector(state => state.ui);
+    //const { allDogs, temps } = useSelector(state => state.ui);
+    const { dogsapi, temps } = useSelector(state => state.ui);
     
 
     function handleFilterTemps(e){
         
-        dispatch(filterByTemps(allDogs, e.target.value))
+        dispatch(filterByTemps(dogsapi, e.target.value))
         
     }
 
-    // function cargarTemps() {
-    //     var newTempsName = []
-    //     for(let i=0; i < temps.length; i++){
-    //         newTempsName.push(temps[i].temperament)
-    //     }
-        
-    //     newTempsName.sort();
-    //     console.log(newTempsName)
-           
-    //    var select = document.getElementsByName('temperamentos')[0];
-       
-    //     newTempsName.forEach(e => {
-    //      var option = document.createElement("option");
-    //      option.text = e;
-    //      select.add(option);
-    //     })
-    // }
     
-//cargarTemps();
-
   return (
     <div className='container-temps'>
         <label>Temperamentos :</label>
