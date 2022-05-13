@@ -166,7 +166,7 @@ export const CrearDog = () => {
         weight: `${pesomin} - ${pesomax}`,
         lifeSpan: `${edadmin} años`
       })
-   }
+    }else alert("Temperamento ya seleccionado...!");
   }
 
   function handleSubmit(e){
