@@ -157,13 +157,16 @@ export const CrearDog = () => {
   
   
   function handleSelect(e){
-    setDog({
-      ...dog,
-      selectedTemps: [...dog.selectedTemps, e.target.value],
-      height: `${alturamin} - ${alturamax}`,
-      weight: `${pesomin} - ${pesomax}`,
-      lifeSpan: `${edadmin} años`
-    })
+    let haytemp = dog.selectedTemps.find(temp => temp === e.target.value)
+    if (!haytemp){
+      setDog({
+        ...dog,
+        selectedTemps: [...dog.selectedTemps, e.target.value],
+        height: `${alturamin} - ${alturamax}`,
+        weight: `${pesomin} - ${pesomax}`,
+        lifeSpan: `${edadmin} años`
+      })
+   }
   }
 
   function handleSubmit(e){
