@@ -66,7 +66,10 @@ export function uiReducer(state = initialState, { type, payload }) {
                 dogsFavorite: [...state.dogsFavorite, payload]}    
         
         case CLEARDOG:
-            return {...state, dog: {}}
+            return {...state,
+                 dog: {},
+                 dogsapi: []
+                }
 
         default:
            return state;
