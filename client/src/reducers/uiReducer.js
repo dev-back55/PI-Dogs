@@ -1,10 +1,11 @@
-import { GET_DOGS, GET_DOGID, SEARCH_DOG, CREATE_DOG, GET_TEMPS, GET_DOGS_DETAIL, GET_DOGNAME, FILTERID, FILTEREDBYTEMPS, ORDERBYNAME, ORDERBYPESO, POSTCREADOG, ADD_DOG_FAVORITE, SHOWFAVORITES, CLEARDOG } from '../actions/actions'
+import { GET_DOGS, GET_DOGID, SEARCH_DOG, CREATE_DOG, GET_TEMPS, GET_DOGS_DETAIL, GET_DOGNAME, FILTERID, FILTEREDBYTEMPS, ORDERBYNAME, ORDERBYPESO, POSTCREADOG, ADD_DOG_FAVORITE, SHOWFAVORITES, CLEARDOG, SELECTPAG } from '../actions/actions'
 
 const initialState = {
     dogsapi:[],
     dogsDb:[],
     allDogs:[],
     dog:{},
+    pagina: 1,
     dogsFavorite:[],
     temps:[],
     name:'', height:['',''], weight:['',''], lifeSpan:['',''],
@@ -44,13 +45,13 @@ export function uiReducer(state = initialState, { type, payload }) {
             }    
 
         case GET_DOGNAME:
-            return { ...state, dogsapi: payload }    
+            return { ...state, dogsapi: payload, pagina: 1}    
 
         case FILTERID:
-            return { ...state, dogsapi: payload}
+            return { ...state, dogsapi: payload, pagina: 1}
         
         case FILTEREDBYTEMPS:     
-            return { ...state, dogsapi: payload}
+            return { ...state, dogsapi: payload, pagina: 1}
             
         case ORDERBYNAME:
             return { ...state, dogsapi: payload}    
@@ -70,6 +71,8 @@ export function uiReducer(state = initialState, { type, payload }) {
                  dog: {},
                  dogsapi: []
                 }
+        case SELECTPAG:
+            return {...state, pagina: payload}
 
         default:
            return state;

@@ -19,7 +19,7 @@ export const ORDERBYPESO = 'ORDERBYPESO';
 export const POSTCREADOG = 'POSTCREADOG';
 export const SHOWFAVORITES = 'SHOWFAVORITES';
 export const CLEARDOG = 'CLEARDOG';
-
+export const SELECTPAG = 'SELECTPAG';
 
 // Funciones creadoras de acciones
 const apiDogs = 'http://localhost:3001/dogs'
@@ -31,6 +31,13 @@ export function searchDogs(payload){
         type: SEARCH_DOG,
         payload: payload
     }
+}
+
+export function selectPag(payload){
+  return {
+    type: SELECTPAG,
+    payload
+  }
 }
 
 export function getFavorites(dogsFavorite){

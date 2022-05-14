@@ -29,7 +29,7 @@ if(!dog) { return <Spinner />}
         
        <div className='container-details'>  
         <div className='container-btn'>
-        <button className='btn-home' onClick={handlegoback}>Home</button>
+        <button className='btn-home' onClick={handlegoback}>Volver</button>
         </div>
         <div className="container-card" key={id}>
             <div className="card-detail">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import './Home.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDogs, getTemps } from '../actions/actions';
@@ -14,10 +14,12 @@ import Spinner from '../components/Spinner';
 export const Home = () => {
     const dispatch = useDispatch()
 
-    const { dogsapi } = useSelector(state => state.ui);
+    const { dogsapi, pagina } = useSelector(state => state.ui);
 
-    const [currentPage, setCurrentPage] = useState(1);
-
+    //const [currentPage, setCurrentPage] = useState(1);
+    let currentPage = 0
+    currentPage = pagina
+console.log(pagina, 'pagina arranque')
     useEffect(() => {
         
          dispatch(getDogs());
@@ -30,7 +32,7 @@ export const Home = () => {
 
     //? paginado de flechas
      const maxpage = Math.ceil(dogsapi?.length / 8)
-
+    console.log(maxpage, ' maxpage')
      const dogToShow = () => {
          const dogShow = dogsapi?.slice(
              (currentPage - 1 ) * 8,
@@ -38,7 +40,7 @@ export const Home = () => {
          )
          return dogShow
      }
-
+console.log(currentPage, 'currentPage')
    
   return (
     <>
@@ -88,7 +90,7 @@ export const Home = () => {
                 <FiltrarTemps />
                 <Ordenar />
                 <SearchBar />
-                <Pagina currentPage={currentPage} setCurrentPage={setCurrentPage} maxpage={maxpage}></Pagina>
+                <Pagina currentPage={currentPage} maxpage={maxpage}></Pagina>
 
           </div>
                {               

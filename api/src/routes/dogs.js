@@ -105,11 +105,11 @@ router.post('/', async (req,res,next)=>{
         
              await newDog.addTemperaments(idTemp);
         
-             return res.status(201).json(newDog).send('Perrito Creado con Exito!!');
+             return res.status(201).json(newDog).send('Raza Creada con Exito!!');
         }
         if(!newDog) return res.status(404).json({error : 'No se pudo crear el nuevo perrito'});
         
-        res.status(201).json(newDog).send('Perrito Creado con Exito!!');
+        res.status(201).json(newDog).send('Raza Creada con Exito!!');
     }catch(e){
         next(e)
     }

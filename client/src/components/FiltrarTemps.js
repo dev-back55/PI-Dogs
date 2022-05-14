@@ -23,7 +23,7 @@ const FiltrarTemps = () => {
         <select onChange={e => handleFilterTemps(e)}>
             {
                 temps.sort()?.map(temp =>(
-                    <option value={temp.temperament} key={temp.temperament}>{temp.temperament}</option>
+                    <option value={temp.temperament} key={temp.id}>{temp.temperament}</option>
                     ))
 
             }

@@ -9,10 +9,10 @@ export function validate(dog){
 
   let errors = {};
 
-  if(!dog.name) {
-    errors.name = 'Se requiere un Nombre de Raza'
-  }else if (!/\D/.test(dog.username)) {
+  if (!/^[a-z ,.'-]+$/i.test(dog.username)) {
     errors.username = 'Nombre invalido, no se adminten numeros';
+  } else if(!dog.name) {
+    errors.name = 'Se requiere un Nombre de Raza'
   }
 
   if(!dog.heightmin){
@@ -171,23 +171,23 @@ export const CrearDog = () => {
 
   function handleSubmit(e){
     e.preventDefault();
-    console.log(dog)
-    dispatch(postCreaDog(dog))
-    alert("Raza Creada con Exito!!")
-    setDog({
-      name:'',
-      height: '',
-      weight: '',
-      lifeSpan: '',
-      img:'',
-      selectedTemps:[],
-      heightmin: 0,
-      heightmax: 0,
-      weightmax: 0,
-      weightmin: 0,
-      lifeSpanmin: 0
-    })
-     
+    if(dog.name !== '' || dog.height !== '' || dog.weight !== ''){
+        dispatch(postCreaDog(dog))
+        alert("Raza Creada con Exito!!")
+        setDog({
+          name:'',
+          height: '',
+          weight: '',
+          lifeSpan: '',
+          img:'',
+          selectedTemps:[],
+          heightmin: 0,
+          heightmax: 0,
+          weightmax: 0,
+          weightmin: 0,
+          lifeSpanmin: 0
+        })
+    }else alert('Faltan datos no se puede Crear Perrito!') 
   history.push('/home')
   }
 
